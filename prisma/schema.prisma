@@ -6,6 +6,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model Product {
+  id String @id @default(auto()) @map("_id") @db.ObjectId //Nao reconhece o id como int
+  slug String 
+  name String 
+  price Float 
+  type String 
+  size  String
+  cover String
+  flavor  String
+  imgPathName  String
+  description  String
+  id_category  Int
+  created_at  DateTime @default(now()) //modelo adequado de data para trabalhar com prisma e mongo
+  updated_at  DateTime @default(now())
 }
